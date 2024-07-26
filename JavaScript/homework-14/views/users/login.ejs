@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../blocks/head.ejs') -%>
+<body>
+    <%- include('../blocks/header.ejs') -%>
+    <main>
+        <div class="container">
+            <div class="auth-form">
+                <h2>Войти</h2>
+                <form action="/login" method="post">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <button type="submit">Войти</button>
+                </form>
+                <p>Нет аккаунта? <a href="/register">Регистрация</a></p>
+            </div>
+        </div>
+    </main>
+    <%- include('../blocks/footer.ejs') -%>
+</body>
+</html>

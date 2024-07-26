@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./blocks/head.ejs') -%>
+<body>
+    <%- include('./blocks/header.ejs') -%>
+    <main>
+        <div class="container">
+            <h2>Обсуждения</h2>
+            <h3>
+                <a href="/new-discussion">Создать новое осуждение</a>
+            </h3>
+            <section class="discussions">
+                <ul>
+                    <% if (discussions.length) { %>
+                        <% discussions.forEach(({ id, title, text, date, author, status, closed, comments }) => { %>
+                            <li>
+                                <h3>
+                                    <a href="/discussions/<%= id %>"><%= title %></a> - 
+                                    <span>Комментарии: <%= comments.length %></span>
+                                </h3>
+                                <div class="info">
+                                    <span><%= date %> - </span>
+                                    <span><%= author %> - </span>
+                                    <span><%= status %></span>
+                                </div>
+                            </li>
+                        <% }) %>
+                    <% } %>
+                </ul>
+            </section>
+            <br/>
+        </div>
+    </main>
+    <%- include('./blocks/footer.ejs') -%>
+</body>
+</html>

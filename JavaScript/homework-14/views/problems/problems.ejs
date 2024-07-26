@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./blocks/head.ejs') -%>
+<body>
+    <%- include('./blocks/header.ejs') -%>
+    <main>
+        <div class="container">
+            <h2>Задачи по программированию</h2>
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-meta">
+                        <h3><a href="/problems/1">Реверс строки</a></h3>
+                        <p>Сложность: Легкая</p>
+                    </div>
+                    <p class="task-desc">Напишите программу, которая принимает строку и возвращает её в обратном порядке.</p>
+                </li>
+                <li class="task">
+                    <div class="task-meta">
+                        <h3><a href="/problems/2">Сумма чисел в массиве</a></h3>
+                        <p>Сложность: Средняя</p>
+                    </div>
+                    <p class="task-desc">Напишите функцию, которая принимает массив чисел и возвращает их сумму.</p>
+                </li>
+                <li class="task">
+                    <div class="task-meta">
+                        <h3><a href="/problems/3">Поиск минимума в неполном списке</a></h3>
+                        <p>Сложность: Сложная</p>
+                    </div>
+                    <p class="task-desc">Напишите алгоритм для поиска минимального элемента в неполном списке.</p>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <%- include('./blocks/footer.ejs') -%>
+</body>
+</html>

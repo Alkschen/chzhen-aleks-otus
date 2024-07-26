@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppCode | <%= title %></title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        header h1 a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        main .container {
+            padding: 20px 0;
+        }
+
+        main h2 {
+            text-align: center;
+            color: #3f51b5;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .problems {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .problem {
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .problem h3 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .problem p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .problem a {
+            text-decoration: none;
+            color: #3f51b5;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <%- include('./blocks/header.ejs') -%>
+
+    <main>
+        <div class="container">
+            <h2>Задачи по программированию</h2>
+            <div class="problems" id="problem-list">
+                <div class="problem">
+                    <h3><a href="/problems/1">Реверс строки</a></h3>
+                    <p>Сложность: Легкая</p>
+                    <p>Описание: Напишите функцию, которая принимает строку и возвращает её в обратном порядке.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <%- include('./blocks/footer.ejs') -%>
+    
+</body>
+</html>

@@ -1,4 +1,4 @@
-const pool = require('../../pool-db')
+const pool = require('../../config/pool-db')
 
 // Функция обработки ошибки
 const handleError = (res, error, message) => {

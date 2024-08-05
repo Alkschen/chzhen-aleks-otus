@@ -11,5 +11,13 @@
                 <li><a href="/register">Регистрация</a></li>
             </ul>
         </nav>
+        <div class="user-info">
+            <% if (users) { %>
+                <span>Добро пожаловать, <strong><%= users.username %></strong>!</span>
+                <a href="/logout" class="logout-btn">Выход</a>
+            <% } else { %>
+                <span>Вы не вошли в систему.</span>
+            <% } %>
+        </div>
     </div>
 </header>

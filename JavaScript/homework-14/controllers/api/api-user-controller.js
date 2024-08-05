@@ -1,4 +1,4 @@
-const pool = require('../../pool-db')
+const pool = require('../../config/pool-db')
 
 const getUsers = (req, res) => {
     pool.query(`SELECT * FROM main.users ORDER BY user_id ASC`, (error, results) => {

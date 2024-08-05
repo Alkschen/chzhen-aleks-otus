@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./blocks/head.ejs') -%>
+<body>
+    <%- include('./blocks/header.ejs') -%>
+    <main>
+        <div class="container">
+            <h2>Обсуждения</h2>
+            <h3>
+                <a href="/new-discussion">Создать новое осуждение</a>
+            </h3>
+            <section class="discussions">
+                <ul>
+                    <% if (discussions.length) { %>
+                        <% discussions.forEach(({ id, title, text, date, author, status, closed, comments }) => { %>
+                            <li>
+                                <h3>
+                                    <a href="/discussions/<%= id %>"><%= title %></a> - 
+                                    <span>Комментарии: <%= comments.length %></span>
+                                </h3>
+                                <div class="info">
+                                    <span><%= date %> - </span>
+                                    <span><%= author %> - </span>
+                                    <span><%= status %></span>
+                                </div>
+                            </li>
+                        <% }) %>
+                    <% } %>
+                </ul>
+            </section>
+            <br/>
+            <!-- <section class="new-discussion">
+                <h3>Создать новую тему</h3>
+                <form action="/new-discussion" method="post">
+                    <label for="title">Заголовок темы</label>
+                    <input type="text" id="title" name="title" required>
+                    <br/>
+                    <label for="content">Текст обсуждения</label>
+                    <textarea id="content" name="content" rows="5" required></textarea>
+                    <br/>
+                </form>
+            </section> -->
+        </div>
+    </main>
+    <%- include('./blocks/footer.ejs') -%>
+    <!-- <script src="scripts.js"></script> -->
+</body>
+</html>

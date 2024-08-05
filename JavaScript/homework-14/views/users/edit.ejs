@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../blocks/head.ejs') -%>
+<body>
+    <%- include('../blocks/header.ejs') -%>
+    <main>
+        <div class="container">
+            <h2>Редактирование сведений о пользователе</h2>
+            <form id="editUserForm" method="POST" action="/user-edit/<%= users.user_id %>?_method=PUT">
+                <label for="username">Имя пользователя</label>
+                <input type="username" id="username" name="username" value="<%= users.username %>" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="<%= users.email %>" required>
+                
+             <button type="submit">Сохраненить изменения</button>
+            </form>
+        </div>
+    </main>
+    <%- include('../blocks/footer.ejs') -%>
+    <!-- <script src="scripts.js"></script> -->
+</body>
+</html>

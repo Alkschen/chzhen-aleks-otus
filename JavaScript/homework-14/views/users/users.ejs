@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <%- include('../blocks/head.ejs') -%>
+<body>
+    <%- include('../blocks/header.ejs') -%>
+    <main>
+        <div class="container">
+            <h2>Список пользователей</h2>
+            <section class="users">
+                <ul>
+                    <% if (users.length) { %>
+                        <% users.forEach(({ user_id, username }) => { %>
+                            <li>
+                                <h3>
+                                    <a href="/users/<%= user_id %>"><%= username %></a> - 
+                                </h3>
+                            </li>
+                        <% }) %>
+                    <% } %>
+                </ul>
+            </section>
+            <br/>
+        </div>
+    </main>
+    <%- include('../blocks/footer.ejs') -%>
+</body>
+</html>

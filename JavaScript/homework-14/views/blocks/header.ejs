@@ -1,0 +1,23 @@
+<header>
+    <div class="container">
+        <h1><a href="/">AppCode</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/problems">Задачи</a></li>
+                <li><a href="/discussions">Обсуждения</a></li>
+                <li><a href="/about">О проекте</a></li>
+                <li><a href="/users">Пользователи</a></li>
+                <!-- <li><a href="/login">Войти</a></li> -->
+                <li><a href="/register">Регистрация</a></li>
+            </ul>
+        </nav>
+        <div class="user-info">
+            <% if (users) { %>
+                <span>Добро пожаловать, <strong><%= users.username %></strong>!</span>
+                <a href="/logout" class="logout-btn">Выход</a>
+            <% } else { %>
+                <span>Вы не вошли в систему.</span>
+            <% } %>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,41 @@
+{
+  "name": "homework14_project",
+  "version": "0.0.1",
+  "description": "Homework-14",
+  "main": "server.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "server": "node dist/server.js",
+    "start": "npm run server",
+    "dev": "concurrently \"npm run watch\" \"nodemon dist/server.js\""
+  },
+  "author": "I",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
+    "method-override": "^3.0.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/express-flash": "^0.0.5",
+    "@types/express-session": "^1.18.0",
+    "@types/method-override": "^0.0.35",
+    "@types/node": "^22.2.0",
+    "@types/passport": "^1.0.16",
+    "@types/passport-local": "^1.0.38",
+    "@types/pg": "^8.11.6",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.4",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <%- include('../blocks/head.ejs') -%>
+<body>
+    <%- include('../blocks/header.ejs') -%>
+    <main>
+        <div class="container">
+            <h2>Информация о пользователе</h2>
+            <section class="users">
+                <div class="info">
+                    <span>Имя пользователя - <%= users.username %></span>
+                    <p></p>
+                    <span>Дата создания пользователя - <%= users.created_at || 'No date' %></span>
+                </div>
+                <p></p>
+                <a href="/user-edit/<%= users.user_id %>" class="btn-edit"> Изменить сведения </a>
+                <p></p>
+                <button class="btn-delete" data-id="<%= users.user_id %>">
+                    Удалить пользователя
+                </button>
+            </section>
+            <br/>
+        </div>
+    </main>
+    <script>
+        document.querySelector('.btn-delete').addEventListener('click', (e) => {
+            fetch(`/profile/delete`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: "<%= users.user_id %>" })
+            }).then(() => {
+                window.location.href = '/login';
+            });
+        });
+    </script>
+    <%- include('../blocks/footer.ejs') -%>
+</body>
+</html>

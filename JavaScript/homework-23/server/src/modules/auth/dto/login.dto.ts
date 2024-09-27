@@ -1,0 +1,6 @@
+//  import {} from 'class-validator';
+
+export class LoginDto {
+  readonly username: string;
+  readonly password: string;
+}

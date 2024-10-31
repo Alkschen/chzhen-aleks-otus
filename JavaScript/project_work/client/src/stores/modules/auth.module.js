@@ -12,60 +12,61 @@ export const auth = {
   },
 
   mutations: {
-    authRequest(state) {
-      state.status = 'loading'
+    SET_AUTH(state, { token, user }) {
+      (state.status = 'auth-success'), 
+      (state.token = token), 
+      (state.user = user)
     },
-    authSuccess(state, { token, user }) {
-      ;(state.status = 'auth-success'), (state.token = token), (state.user = user)
+    SET_ERROR(state, errorMessage) {
+      (state.status = 'error'), 
+      (state.error = errorMessage)
     },
-    authError(state, errorMessage) {
-      ;(state.status = 'error'), (state.error = errorMessage)
-    },
-    regSuccess(state) {
+    SET_REG_SUCCESS(state) {
       state.status = 'reg-success'
     },
-    logout(state) {
+    LOGOUT(state) {
       state.user = null
       state.token = null
     }
   },
+
   actions: {
+    async register({ commit }, user) {
+      try {
+        const response = await AuthService.register(user)
+        commit('SET_REG_SUCCESS')
+        return response.data
+      } catch (error) {
+        commit('SET_ERROR', error)
+        throw error
+      }
+    },
+
     async login({ commit }, user) {
-      commit('authRequest')
       try {
         const token = await AuthService.login(user)
         const currentUser = decodeToken(token)
-        // console.log('AuthModule.currentUser: ', currentUser)
+        console.log('AuthModule.currentUser: ', currentUser)
         // Заголовок для запросов с токеном
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`
         // Сохраняем токен в localStorage
         localStorage.setItem('user', JSON.stringify({ token, user: currentUser }))
-        commit('authSuccess', { token, user: currentUser })
+        commit('SET_AUTH', { token, user: currentUser })
         console.log('AuthModule.login: ', localStorage.getItem('user'))
       } catch (error) {
-        // console.log('Oшибка auth.module: ', error)
-        commit('authError', error)
+        commit('SET_ERROR', error)
         throw error
       }
     },
+
     logout({ commit }) {
       // authService.logout();
       localStorage.removeItem('user')
-      commit('logout')
+      commit('LOGOUT')
       delete api.defaults.headers.common['Authorization']
-    },
-    async register({ commit }, user) {
-      commit('authRequest')
-      try {
-        const response = await AuthService.register(user)
-        commit('regSuccess')
-        return response.data
-      } catch (error) {
-        commit('authError', error)
-        throw error
-      }
     }
   },
+
   getters: {
     authStatus: (state) => state.status,
     user: (state) => state.user,

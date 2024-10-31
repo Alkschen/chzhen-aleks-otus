@@ -1,7 +1,6 @@
 import api from './axios'
 
 const API_URL = import.meta.env.VITE_API_URL
-// const API_URL = 'http://localhost:3000'
 
 class AuthService {
   async login(user) {
@@ -10,10 +9,10 @@ class AuthService {
         username: user.username,
         password: user.password
       })
-      console.log('AuthService.login Response: ', response.data)
+      // console.log('AuthService.login Response: ', response.data)
       return response.data
     } catch (error) {
-      console.log('Ошибка AuthService.login: ', error.response.data)
+      // console.log('Ошибка AuthService.login: ', error.response.data)
       throw new Error(error.response ? error.response.data.message : 'Непонятная ошибка')
       // return error.response.data
     }

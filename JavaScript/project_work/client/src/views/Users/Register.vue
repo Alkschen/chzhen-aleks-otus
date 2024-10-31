@@ -15,7 +15,7 @@
 
           <button type="submit">Регистрация</button>
         </form>
-        <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
+        <p>Уже есть аккаунт? <router-link to="/login">Войти</router-link></p>
       </div>
     </div>
   </main>

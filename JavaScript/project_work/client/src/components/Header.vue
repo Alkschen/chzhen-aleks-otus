@@ -9,21 +9,19 @@
           <li v-if="user && user.role === 'admin'"><router-link  :to="{ name: 'adminPanel' }">Панель администратора</router-link></li>
         </ul>
       </nav>
-
+      <p></p>
       <div v-if="user" class="user-info">
-        Добро пожаловать,
-        <strong>
-          <router-link :to="{ name: 'profile', params: { username: user.username } }">{{ user.username }}</router-link>
-        </strong>
+        Пользователь:&nbsp;&nbsp;
+        <router-link :to="{ name: 'profile', params: { username: user.username } }">{{ user.username }}</router-link>&nbsp;&nbsp;
         <button @click="logout" class="logout-btn">Выход</button>
       </div>
 
-      <div v-else class="user-info">
+      <!-- <div v-else class="user-info">
         <span>
           Вы не вошли в систему. <router-link to="/register">Зарегистрироваться</router-link> или
           <router-link to="/login">Войти</router-link>
         </span>
-      </div>
+      </div> -->
 
     </div>
   </header>
@@ -41,7 +39,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('auth/logout')
-      this.$router.push('/login')
+      this.$router.push('/')
     }
   }
 }

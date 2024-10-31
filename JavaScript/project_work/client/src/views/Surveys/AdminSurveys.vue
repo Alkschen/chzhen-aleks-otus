@@ -17,7 +17,7 @@
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  name: 'SurveysList',
+  name: 'AdminSurveys',
   computed: {
     ...mapState('surveys', ['surveys', 'error'])
   },
@@ -29,6 +29,7 @@ export default {
 
     // Добавления нового опроса
     addSurvey() {
+      this.$router.push('/admin/surveys/add');
     }
   }
 }

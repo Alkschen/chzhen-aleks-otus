@@ -6,7 +6,7 @@
         <ul>
           <li v-for="user in users" :key="user.id">
             <h3>
-              Имя пользователя: <a :href="`/users/${user.id}`">{{ user.username }}</a> - email:
+              Имя пользователя: {{ user.username }} - email:
               {{ user.email }},
               {{ user.role }}
             </h3>
@@ -34,7 +34,7 @@ import { mapActions, mapGetters } from 'vuex'
 import ModalEdit from '@/components/User/ModalEdit.vue'
 
 export default {
-  name: 'UsersList',
+  name: 'AdminUsers',
   components: { ModalEdit },
   data() {
     return {

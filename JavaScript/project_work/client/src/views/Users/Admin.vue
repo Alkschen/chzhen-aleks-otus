@@ -4,10 +4,10 @@
     <div class="stats">
         <h2>Пользователи</h2>
         <p>{{ usersCount }}</p>
-        <router-link to="/users"><button class="btn">Список пользователей</button></router-link>
+        <router-link to="/admin/users"><button class="btn">Список пользователей</button></router-link>
         <h2>Опросы</h2>
         <p>{{ surveysCount }}</p>
-        <router-link to="/surveys"><button class="btn">Список опросов</button></router-link>
+        <router-link to="/admin/surveys"><button class="btn">Список опросов</button></router-link>
     </div>
   </div>
 </template>

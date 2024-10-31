@@ -47,7 +47,7 @@ export default {
           password: this.password
         })
         // console.log(response)
-        this.$router.push('/profile')
+        this.$router.push({ name: 'home' })
       } catch (error) {
         // console.log('Авторизация не удалась:', error)
         alert('Ошибка входа: ' + error)
@@ -57,4 +57,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// import stores from '../stores'
+import store from '../stores'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -35,31 +35,39 @@ export const router = createRouter({
       path: '/admin',
       name: 'adminPanel',
       component: () => import('../views/Users/Admin.vue'),
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, role: 'admin' }
     },
     {
-      path: '/users',
-      name: 'usersList',
-      component: () => import('../views/Users/Users.vue'),
-      meta: { requiresAuth: true }
+      path: '/admin/users',
+      name: 'adminUsers',
+      component: () => import('../views/Users/AdminUsers.vue'),
+      meta: { requiresAuth: true, role: 'admin' }
     },
     {
-      path: '/surveys',
-      name: 'surveysList',
-      component: () => import('../views/Surveys/Surveys.vue'),
-      meta: { requiresAuth: true }
+      path: '/admin/surveys',
+      name: 'adminSurveys',
+      component: () => import('../views/Surveys/AdminSurveys.vue'),
+      meta: { requiresAuth: true, role: 'admin' }
     },
+    {
+      path: '/admin/surveys/add',
+      name: 'addSurvey',
+      component: () => import('../views/Surveys/AddSurvey.vue'),
+      meta: { requiresAuth: true, role: 'admin' }
+    }
   ],
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (localStorage.getItem('user')) {
-      next()
-    } else {
-      next('/login')
-    }
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = store.getters['auth/user'] !== null;
+  const user = store.getters['auth/user'];
+
+  if (requiresAuth && !isAuthenticated) {
+    next({ name: 'login' }); // Перенаправление на страницу логина
+  } else if (to.meta.role && to.meta.role !== user.role) {
+    next({ name: 'home' }); // Перенаправление на домашнюю страницу, если роль не соответствует
   } else {
-    next()
+    next(); 
   }
-})
+});

@@ -11,7 +11,7 @@
               {{ user.role }}
             </h3>
             <button @click="openModalEdit(user)">Изменить</button>
-            <button class="delete-btn" @click="removeUser(user.id)">Удалить</button>
+            <button class="delete-btn" @click="deleteUser(user.id)">Удалить</button>
           </li>
         </ul>
       </section>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import ModalEdit from '@/components/User/ModalEdit.vue'
 
 export default {
@@ -38,7 +38,6 @@ export default {
   components: { ModalEdit },
   data() {
     return {
-      users: [], // Список пользователей
       showModal: false, // Состояние модального окна
       selectedUser: {
         username: '',
@@ -48,25 +47,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('users', { users: 'users' })
+    ...mapState('users', ['users'])
   },
-  mounted() {
+  created() {
     // Загрузка списка пользователей
-    this.getUsers()
+    this.getUsersList()
   },
   methods: {
     ...mapActions('users', ['getUsersList', 'updateUser', 'deleteUser']),
-
-    // Получение списка пользователей
-    async getUsers() {
-      try {
-        const response = await this.getUsersList()
-        console.log('Users.getUsersList: ', response)
-        this.users = response.data
-      } catch (error) {
-        console.error('Ошибка загрузки списка пользователей: ', error)
-      }
-    },
 
     openModalEdit(user) {
       this.showModal = true
@@ -89,16 +77,6 @@ export default {
         console.error('Ошибка при изменении пользователя:', error)
       }
     },
-
-    // Удаление пользователя
-    async removeUser(id) {
-      try {
-        await this.deleteUser(id)
-        this.getUsers() // Обновление списка пользователей
-      } catch (error) {
-        console.error('Ошибка при удалении пользователя:', error)
-      }
-    }
   }
 }
 </script>

@@ -2,12 +2,13 @@
   <div class="admin-panel">
     <h1>Панель администратора</h1>
     <div class="stats">
-        <h2>Пользователи</h2>
-        <p>{{ usersCount }}</p>
-        <router-link to="/admin/users"><button class="btn">Список пользователей</button></router-link>
-        <h2>Опросы</h2>
-        <p>{{ surveysCount }}</p>
-        <router-link to="/admin/surveys"><button class="btn">Список опросов</button></router-link>
+      <router-link :to="{ name: 'adminUsers' }">Список пользователей</router-link>&nbsp;&nbsp;
+      <router-link :to="{ name: 'adminSurveys' }">Список опросов</router-link>&nbsp;&nbsp;
+      <router-link :to="{ name: 'addSurvey' }">Добавить опрос</router-link>&nbsp;&nbsp;
+      <!-- <router-link :to="{ name: 'adminSuveysDetails', params: { id: 1 } }">Просмотр опроса</router-link> -->
+        <!-- <p>{{ usersCount }}</p> -->
+        <!-- <p>{{ surveysCount }}</p> -->
+      <router-view></router-view>
     </div>
   </div>
 </template>

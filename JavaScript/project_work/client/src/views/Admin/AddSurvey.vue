@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/admin/surveys">Вернуться к списку опросов</router-link>
+  <!-- <router-link to="/admin/surveys">Вернуться к списку опросов</router-link> -->
   <h1>Добавить опрос</h1>
   <form @submit.prevent="addSurvey">
     <label for="title">Название опроса</label>

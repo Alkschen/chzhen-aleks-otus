@@ -10,7 +10,6 @@
         <router-link to="/login">Войти</router-link>
       </p>
       <!-- Содержимое страницы -->
-      <router-view />
     </main>
   </div>
 </template>

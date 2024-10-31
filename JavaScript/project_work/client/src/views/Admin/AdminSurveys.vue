@@ -1,11 +1,13 @@
 <template>
   <div class="surveys">
-    <h1>Список опросов</h1>
-    <button class="btn" @click="addSurvey">Добавить опрос</button>
+    <h2>Список опросов</h2>
+    <!-- <button class="btn" @click="addSurvey">Добавить опрос</button> -->
     <ul>
       <li v-for="survey in surveys" :key="survey.id">
         <h3>{{ survey.title }}</h3>
         <p>{{ survey.description }}</p>
+        <!-- <button @click="openModalEdit(survey)">Изменить</button> -->
+        <!-- <button class="edit-btn" @click="openModalEdit(survey)">Изменить</button> -->
         <button class="delete-btn" @click="deleteSurvey(survey.id)">Удалить</button>
       </li>
     </ul>
@@ -28,8 +30,12 @@ export default {
     ...mapActions('surveys', ['fetchSurveys', 'deleteSurvey']),
 
     // Добавления нового опроса
-    addSurvey() {
-      this.$router.push('/admin/surveys/add');
+    // addSurvey() {
+    //   this.$router.push('/admin/surveys/add');
+    // },
+    // Редактирование опроса
+    updateSurvey(survey) {
+      this.$router.push(`/admin/surveys/${survey.id}`);
     }
   }
 }

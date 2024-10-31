@@ -30,9 +30,9 @@ export const users = {
     },
     async getUsersList({ commit }) {
       try {
-        const users = await UserService.getUsersList()
-        // console.log('UsersModule.getUsersList: ', users)
-        commit('SET_USERS', users)
+        const response = await UserService.getUsersList()
+        // console.log('UsersModule.getUsersList: ', response.data)
+        commit('SET_USERS', response.data)
         return users
       } catch (error) {
         if (error.response && error.response.status === 401) {
@@ -60,7 +60,6 @@ export const users = {
       try {
         const user = await UserService.updateUser(id, userData)
         commit('SET_USER', user)
-        // return user
       } catch (error) {
         if (error.response.status === 401) {
           console.log('Ошибка авторизации: ', error.response.data)
@@ -70,10 +69,10 @@ export const users = {
       // const user = await userService.updateUser(id, data)
       // commit('SET_USER', user)
     },
-    async deleteUser({ commit }, id) {
+    async deleteUser({ dispatch }, id) {
       try {
         await UserService.deleteUser(id)
-        commit('SET_USERS', null)
+        await dispatch('getUsersList')
       } catch (error) {
         console.log('Ошибка при удалении пользователя: ', error)
         if (error.response.status === 401) {

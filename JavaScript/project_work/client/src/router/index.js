@@ -2,59 +2,83 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import store from '../stores'
 
+import HomePage from '../views/HomePage.vue'
+import AboutPage from '../views/AboutPage.vue'
+import LoginPage from '../views/Users/Login.vue'
+import Register from '../views/Users/Register.vue'
+import UserProfile from '../views/Users/User.vue'
+import AdminPanel from '../views/Admin/Admin.vue'
+import AdminUsers from '../views/Admin/AdminUsers.vue'
+import AdminSurveys from '../views/Admin/AdminSurveys.vue'
+import AddSurvey from '@/views/Admin/AddSurvey.vue'
+import AdminSurvey from '@/views/Admin/AdminSurvey.vue'
+import Surveys from '@/views/Surveys/Surveys.vue'
+
 export const router = createRouter({
   history: createWebHistory(),
   routes:[
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/HomePage.vue')
+      component: HomePage
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutPage.vue')
+      component: AboutPage
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/Users/Login.vue')
+      component: LoginPage
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views/Users/Register.vue')
+      component: Register
     },
     {
       path: '/user/:username',
       name: 'profile',
-      component: () => import('../views/Users/User.vue'),
+      component: UserProfile,
       meta: { requiresAuth: true }
     },
     {
       path: '/admin',
       name: 'adminPanel',
-      component: () => import('../views/Users/Admin.vue'),
-      meta: { requiresAuth: true, role: 'admin' }
+      component: AdminPanel,
+      meta: { requiresAuth: true, role: 'admin' },
+      children: [
+        { path: '/admin/users', name: 'adminUsers', component: AdminUsers },
+        { path: '/admin/surveys', name: 'adminSurveys', component: AdminSurveys },
+        { path: '/admin/surveys/add', name: 'addSurvey', component: AddSurvey },
+        // { path: '/admin/surveys/:id', name: 'adminSurveyDetails', component: AdminSurvey },
+      ]
     },
-    {
-      path: '/admin/users',
-      name: 'adminUsers',
-      component: () => import('../views/Users/AdminUsers.vue'),
-      meta: { requiresAuth: true, role: 'admin' }
-    },
-    {
-      path: '/admin/surveys',
-      name: 'adminSurveys',
-      component: () => import('../views/Surveys/AdminSurveys.vue'),
-      meta: { requiresAuth: true, role: 'admin' }
-    },
-    {
-      path: '/admin/surveys/add',
-      name: 'addSurvey',
-      component: () => import('../views/Surveys/AddSurvey.vue'),
-      meta: { requiresAuth: true, role: 'admin' }
-    }
+    // {
+    //   path: '/admin/surveys/add',
+    //   name: 'addSurvey',
+    //   component: AddSurvey,
+    //   meta: { requiresAuth: true, role: 'admin' }
+    // },
+    // {
+    //   path: '/admin/surveys/:id',
+    //   name: 'adminSurveyDetails',
+    //   component: AdminSurvey,
+    //   meta: { requiresAuth: true, role: 'admin' }
+    // },
+    // {
+    //   path: '/surveys',
+    //   name: 'surveysList',
+    //   component: Surveys,
+    //   meta: { requiresAuth: true }
+    // },
+    // {
+    //   path: '/surveys/:id',
+    //   name: 'surveyPage',
+    //   component: () => import('../views/Surveys/Survey.vue'),
+    //   meta: { requiresAuth: true }
+    // }
   ],
 })
 
